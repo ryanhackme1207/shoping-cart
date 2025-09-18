@@ -11,6 +11,7 @@ using namespace std;
 class Menu {
 public:
     static void showMenu(vector<Product>& products, vector<CartItem>& cart);
+    static void searchAndSortMenu(vector<Product> &products);
 };
 
 #endif

@@ -2,8 +2,20 @@
 #include "menu.h"
 #include <iostream>
 #include <iomanip>
+#include <algorithm> // for sort
+#include <cctype>    // for ::tolower
 #include <limits>
 using namespace std;
+
+// Helper function: convert to lowercase
+string toLowerCase(const string &str)
+{
+    string lower = str;
+    transform(lower.begin(), lower.end(), lower.begin(),
+              [](unsigned char c)
+              { return std::tolower(c); });
+    return lower;
+}
 
 // Function to safely get integer input
 int getValidInteger(const string& prompt) {
@@ -26,18 +38,18 @@ int getValidInteger(const string& prompt) {
     }
 }
 
-// Function to safely get menu choice (1-8 only)
+// Function to safely get menu choice (1-9 only)
 int getMenuChoice() {
     int choice;
     while (true) {
         choice = getValidInteger("Enter choice: ");
-        if (choice >= 1 && choice <= 8) {
+        if (choice >= 1 && choice <= 9) {
             return choice;
         } else {
             cout << R"(
          +----------------------------------------+
          |              ERROR!                    |
-         |    Please enter a number between 1-8! |
+         |    Please enter a number between 1-9! |
          +----------------------------------------+
 )" << endl;
         }
@@ -79,9 +91,10 @@ void Menu::showMenu(vector<Product>& products, vector<CartItem>& cart) {
         cout << "3. View Cart\n";
         cout << "4. Update Cart Item\n";
         cout << "5. Remove Item from Cart\n";
-        cout << "6. Checkout\n";
-        cout << "7. Logout\n";
-        cout << "8. Exit\n";
+        cout << "6. Search / Sort Products\n";
+        cout << "7. Checkout\n";
+        cout << "8. Logout\n";
+        cout << "9. Exit\n";
         
         choice = getMenuChoice();
 
@@ -396,7 +409,12 @@ void Menu::showMenu(vector<Product>& products, vector<CartItem>& cart) {
             }
         }
 
-        else if (choice == 6) {
+        else if (choice == 6)
+        {
+            searchAndSortMenu(products);
+        }
+
+        else if (choice == 7) {
             cout << R"(
  ===============================================================
  |                      CHECKOUT                            |
@@ -416,12 +434,12 @@ void Menu::showMenu(vector<Product>& products, vector<CartItem>& cart) {
             }
         }
 
-        else if (choice == 7) {
+        else if (choice == 8) {
             Auth::logout();
             return; // Exit to main, which will show auth menu again
         }
 
-        else if (choice == 8) {
+        else if (choice == 9) {
             Auth::logout();
             cout << R"(
          +----------------------------------------+
@@ -433,5 +451,118 @@ void Menu::showMenu(vector<Product>& products, vector<CartItem>& cart) {
             exit(0); // Exit the entire program
         }
 
-    } while (choice != 8);
+    } while (choice != 9);
+}
+
+// Search & Sort submenu
+void Menu::searchAndSortMenu(vector<Product> &products)
+{
+    int choice;
+    do
+    {
+        cout << R"(
+ ===============================================================
+ |                    SEARCH & SORT MENU                       |
+ ===============================================================
+ 1. Search by Name
+ 2. Search by Category
+ 3. Filter by Price Range
+ 4. Sort by Price (Low → High)
+ 5. Sort by Price (High → Low)
+ 6. Sort by Name (A → Z)
+ 7. Back to Main Menu
+)" << endl;
+
+        choice = getValidInteger("Enter choice: ");
+
+        if (choice == 1)
+        {
+            string keyword;
+            cout << "Enter product name keyword: ";
+            cin.ignore();
+            getline(cin, keyword);
+
+            cout << "\n--- Search Results ---\n";
+            for (auto &p : products)
+            {
+                if (p.getName().find(keyword) != string::npos)
+                {
+                    p.display();
+                }
+            }
+        }
+        else if (choice == 2)
+        {
+            string category;
+            cout << "Enter category: ";
+            cin.ignore();
+            getline(cin, category);
+
+            string searchCat = toLowerCase(category);
+
+            cout << "\n--- Category Results ---\n";
+            bool found = false;
+            for (auto &p : products)
+            {
+                if (toLowerCase(p.getCategory()).find(searchCat) != string::npos)
+                {
+                    p.display();
+                    found = true;
+                }
+            }
+            if (!found)
+            {
+                cout << "No products found in this category.\n";
+            }
+        }
+
+        else if (choice == 3)
+        {
+            double minPrice, maxPrice;
+            cout << "Enter minimum price: ";
+            cin >> minPrice;
+            cout << "Enter maximum price: ";
+            cin >> maxPrice;
+
+            cout << "\n--- Price Range Results ---\n";
+            for (auto &p : products)
+            {
+                if (p.getPrice() >= minPrice && p.getPrice() <= maxPrice)
+                {
+                    p.display();
+                }
+            }
+        }
+        else if (choice == 4)
+        {
+            sort(products.begin(), products.end(),
+                 [](Product &a, Product &b)
+                 { return a.getPrice() < b.getPrice(); });
+
+            cout << "\n--- Sorted by Price (Low → High) ---\n";
+            for (auto &p : products)
+                p.display();
+        }
+        else if (choice == 5)
+        {
+            sort(products.begin(), products.end(),
+                 [](Product &a, Product &b)
+                 { return a.getPrice() > b.getPrice(); });
+
+            cout << "\n--- Sorted by Price (High → Low) ---\n";
+            for (auto &p : products)
+                p.display();
+        }
+        else if (choice == 6)
+        {
+            sort(products.begin(), products.end(),
+                 [](Product &a, Product &b)
+                 { return a.getName() < b.getName(); });
+
+            cout << "\n--- Sorted by Name (A → Z) ---\n";
+            for (auto &p : products)
+                p.display();
+        }
+
+    } while (choice != 7);
 }
