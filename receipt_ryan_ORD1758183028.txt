@@ -1,0 +1,48 @@
+===============================================================
+|                    SHOPEE MALL                            |
+|                 Official Online Store                     |
+===============================================================
+
+DIGITAL RECEIPT
+Order ID: ORD1758183028
+Date: Thu Sep 18 16:10:28 2025
+Platform: Shopee Online Shopping
+Store: Shopee Mall Official Store
+
+CUSTOMER INFORMATION:
+Name: Lai Ting Hong
+Email: ryan@gmail.com
+Username: ryan
+Delivery Address: multimedia university
+Payment Method: Shopee Pay
+Shipping Method: Standard Delivery (3-5 working days)
+
+ITEMS PURCHASED:
++------+-------------------------+---------+-----------+-------------+
+|  ID  |       PRODUCT NAME      |   QTY   |   PRICE   |    TOTAL    |
++------+-------------------------+---------+-----------+-------------+
+|    1 | Laptop                  |       5 | RM 2500.00 | RM 12500.00 |
++------+-------------------------+---------+-----------+-------------+
+
+PAYMENT BREAKDOWN:
+Subtotal:        RM 12500.00
+Shipping Fee:    RM 0.00 (FREE)
+Discount:        RM 0.00
+-----------------------------------------------
+GRAND TOTAL:     RM 12500.00
+
+SHOPEE INFORMATION:
+Website: www.shopee.com.my
+Customer Service: 1800-188-1188
+Operating Hours: 9:00 AM - 6:00 PM (Mon-Sun)
+Email Support: help@shopee.com.my
+
+IMPORTANT NOTES:
+- Please keep this receipt for warranty claims
+- Return/Exchange period: 7 days from delivery date
+- Track your order: Shopee App > My Purchases
+- Rate your shopping experience on Shopee!
+
+Thank you for shopping with Shopee!
+Follow us: @ShopeeMY | Download Shopee App for exclusive deals
+For inquiries, contact us with Order ID: ORD1758183028
