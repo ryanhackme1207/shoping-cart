@@ -1,11 +1,12 @@
 === ORDER RECORD ===
-Order ID: ORD1758183028
-Date: Thu Sep 18 16:10:28 2025
+Order ID: ORD1758186710
+Date: Thu Sep 18 17:11:50 2025
 Customer: Lai Ting Hong (ryan@gmail.com)
 Username: ryan
 Address: multimedia university
 Items:
- - Laptop x 5 (RM 12500)
+ - Mouse x 5 (RM 250)
+ - Keyboard x 3 (RM 450)
 Total: RM 0.00
 Status: Completed
 ==========================================
