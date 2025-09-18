@@ -1,40 +1,7 @@
-Order by: ryan (ryanlai@12060gmail.com)
-Address: haha
+Order by: Lai Ting Hong (ryan@gmail.com)
+Username: ryan
+Address: multimedia university
 Items:
- - Laptop x 2
-Total: RM 5000
-
-Order by:  ()
-Address: 
-Items:
- - Laptop x 1
-Total: RM 2500
-
-Order by: bernard (deedew)
-Address: edw
-Items:
- - Keyboard x 1
-Total: RM 150
-
-Order by: ewr (we)
-Address: we
-Items:
- - Keyboard x 2
-Total: RM 300
-
-Order by: 666 (666)
-Address: 666
-Items:
- - Laptop x 2
- - Mouse x 2
- - Keyboard x 2
-Total: RM 5400
-
-Order by: haha (haha)
-Address: gagga
-Items:
- - Laptop x 1
- - Mouse x 2
- - Keyboard x 3
-Total: RM 3050
+ - Laptop x 3 (RM 7500)
+Total: RM 7500
 

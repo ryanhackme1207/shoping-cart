@@ -1,44 +1,75 @@
+// checkout.cpp
 #include "checkout.h"
+#include "auth.h"
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 using namespace std;
 
-void Checkout::processOrder(const vector<CartItem>& cart) {
+void Checkout::processOrder(vector<CartItem>& cart) {
     if (cart.empty()) {
-        cout << "Your cart is empty! Cannot checkout.\n";
+        cout << R"(
+         +----------------------------------------+
+         |              ERROR!                    |
+         |            Cart is empty!              |
+         |         Cannot checkout.               |
+         +----------------------------------------+
+)" << endl;
         return;
     }
 
-    string name, email, address;
-    cout << "\n--- Checkout ---\n";
-    cout << "Enter your name: ";
-    getline(cin, name);
-    cout << "Enter your email: ";
-    getline(cin, email);
-    cout << "Enter your address: ";
-    getline(cin, address);
+    User currentUser = Auth::getCurrentUser();
+    string address = Auth::getValidString("Enter your delivery address: ");
 
+    cout << R"(
+ ===============================================================
+ |                    ORDER SUMMARY                          |
+ ===============================================================
+)" << endl;
+    
+    cout << " Customer: " << currentUser.fullName << endl;
+    cout << " Email: " << currentUser.email << endl;
+    cout << " Address: " << address << endl;
+    cout << "\n +------+-------------------------+---------+-----------+-------------+" << endl;
+    cout << " |  ID  |       PRODUCT NAME      |   QTY   |   PRICE   |    TOTAL    |" << endl;
+    cout << " +------+-------------------------+---------+-----------+-------------+" << endl;
+    
     double total = 0;
-    cout << "\n--- Order Summary ---\n";
     for (auto &item : cart) {
         double cost = item.product.getPrice() * item.quantity;
-        cout << item.product.getName() << " x " << item.quantity 
-             << " = RM " << cost << endl;
+        cout << " | " << setw(4) << item.product.getId() 
+             << " | " << setw(23) << left << item.product.getName() 
+             << " | " << setw(7) << right << item.quantity 
+             << " | RM " << setw(6) << fixed << setprecision(2) << item.product.getPrice()
+             << " | RM " << setw(8) << fixed << setprecision(2) << cost << " |" << endl;
         total += cost;
     }
-    cout << "Total: RM " << total << endl;
+    cout << " +------+-------------------------+---------+-----------+-------------+" << endl;
+    cout << "\n                         +-----------------------+" << endl;
+    cout << "                         |  GRAND TOTAL: RM " << setw(6) << fixed << setprecision(2) << total << " |" << endl;
+    cout << "                         +-----------------------+\n" << endl;
 
     // Save to file
     ofstream fout("orders.txt", ios::app);
-    fout << "Order by: " << name << " (" << email << ")\n";
+    fout << "Order by: " << currentUser.fullName << " (" << currentUser.email << ")\n";
+    fout << "Username: " << currentUser.username << "\n";
     fout << "Address: " << address << "\n";
     fout << "Items:\n";
     for (auto &item : cart) {
         fout << " - " << item.product.getName() << " x " 
-             << item.quantity << "\n";
+             << item.quantity << " (RM " << item.product.getPrice() * item.quantity << ")\n";
     }
     fout << "Total: RM " << total << "\n\n";
     fout.close();
 
-    cout << "\nOrder placed successfully!\n";
+    // Clear cart after successful checkout
+    cart.clear();
+
+    cout << R"(
+         +----------------------------------------+
+         |             SUCCESS!                   |
+         |       Order placed successfully!       |
+         |    Thank you for your purchase!        |
+         +----------------------------------------+
+)" << endl;
 }

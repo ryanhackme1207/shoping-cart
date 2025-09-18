@@ -1,3 +1,4 @@
+// product.h
 #ifndef PRODUCT_H
 #define PRODUCT_H
 
@@ -12,13 +13,11 @@ private:
     int stock;
 
 public:
-    Product(int pid, string pname, double pprice, int pstock);
-
+    Product(int id, string name, double price, int stock);
     int getId() const;
     string getName() const;
     double getPrice() const;
     int getStock() const;
-
     void reduceStock(int qty);
     void display() const;
 };

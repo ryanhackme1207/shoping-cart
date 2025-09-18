@@ -1,9 +1,13 @@
+// menu.h
 #ifndef MENU_H
 #define MENU_H
 
-#include <vector>
 #include "product.h"
+#include "cartitem.h"
 #include "checkout.h"
+#include "auth.h"
+#include <vector>
+using namespace std;
 
 class Menu {
 public:
