@@ -1,11 +1,10 @@
-// menu.h
 #ifndef MENU_H
 #define MENU_H
 
 #include "product.h"
 #include "cartitem.h"
-#include "checkout.h"
 #include "auth.h"
+#include "checkout.h"
 #include <vector>
 using namespace std;
 

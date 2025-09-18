@@ -92,18 +92,18 @@ void Menu::showMenu(vector<Product>& products, vector<CartItem>& cart) {
  ===============================================================
 )" << endl;
             
-            cout << " +------+-------------------------+---------+-----------+-------------+" << endl;
-            cout << " |  ID  |      PRODUCT NAME       |  STOCK  |   PRICE   | DESCRIPTION |" << endl;
-            cout << " +------+-------------------------+---------+-----------+-------------+" << endl;
+            cout << " +------+-------------------------+---------------------+---------+-----------+" << endl;
+            cout << " |  ID  |      PRODUCT NAME       |      CATEGORY       |  STOCK  |   PRICE   |" << endl;
+            cout << " +------+-------------------------+---------------------+---------+-----------+" << endl;
             
             for (auto &p : products) {
-                cout << " | " << setw(4) << p.getId()
+                cout << " | " << setw(4) << right << p.getId()
                      << " | " << setw(23) << left << p.getName()
+                     << " | " << setw(19) << left << p.getCategory()
                      << " | " << setw(7) << right << p.getStock()
-                     << " | RM " << setw(6) << fixed << setprecision(2) << p.getPrice()
-                     << " | " << setw(11) << left << "Available" << " |" << endl;
-                cout << " +------+-------------------------+---------+-----------+-------------+" << endl;
+                     << " | RM " << setw(6) << right << fixed << setprecision(2) << p.getPrice() << " |" << endl;
             }
+            cout << " +------+-------------------------+---------------------+---------+-----------+" << endl;
             
             cout << "\n >> Enter product ID and quantity to add items to your cart!" << endl;
         }
@@ -116,17 +116,18 @@ void Menu::showMenu(vector<Product>& products, vector<CartItem>& cart) {
 )" << endl;
             
             // Show available products first
-            cout << " +------+-------------------------+---------+-----------+" << endl;
-            cout << " |  ID  |      PRODUCT NAME       |  STOCK  |   PRICE   |" << endl;
-            cout << " +------+-------------------------+---------+-----------+" << endl;
+            cout << " +------+-------------------------+---------------------+---------+-----------+" << endl;
+            cout << " |  ID  |      PRODUCT NAME       |      CATEGORY       |  STOCK  |   PRICE   |" << endl;
+            cout << " +------+-------------------------+---------------------+---------+-----------+" << endl;
             
             for (auto &p : products) {
-                cout << " | " << setw(4) << p.getId()
+                cout << " | " << setw(4) << right << p.getId()
                      << " | " << setw(23) << left << p.getName()
+                     << " | " << setw(19) << left << p.getCategory()
                      << " | " << setw(7) << right << p.getStock()
-                     << " | RM " << setw(6) << fixed << setprecision(2) << p.getPrice() << " |" << endl;
+                     << " | RM " << setw(6) << right << fixed << setprecision(2) << p.getPrice() << " |" << endl;
             }
-            cout << " +------+-------------------------+---------+-----------+" << endl;
+            cout << " +------+-------------------------+---------------------+---------+-----------+" << endl;
             cout << endl;
             
             int id = getPositiveInteger("Enter Product ID: ");
@@ -167,7 +168,7 @@ void Menu::showMenu(vector<Product>& products, vector<CartItem>& cart) {
          +----------------------------------------+
          |              ERROR!                    |
          |         Not enough stock!              |
-         |     Available: )" << p.getStock() << R"( | Requested: )" << qty << R"(        |
+         |     Available: )" << setw(2) << p.getStock() << R"( | Requested: )" << setw(2) << qty << R"(        |
          +----------------------------------------+
 )" << endl;
                     }
@@ -214,11 +215,11 @@ void Menu::showMenu(vector<Product>& products, vector<CartItem>& cart) {
                     double itemTotal = item.product.getPrice() * item.quantity;
                     grandTotal += itemTotal;
                     
-                    cout << " | " << setw(4) << item.product.getId() 
+                    cout << " | " << setw(4) << right << item.product.getId() 
                          << " | " << setw(23) << left << item.product.getName() 
                          << " | " << setw(7) << right << item.quantity 
-                         << " | RM " << setw(6) << fixed << setprecision(2) << item.product.getPrice()
-                         << " | RM " << setw(8) << fixed << setprecision(2) << itemTotal << " |" << endl;
+                         << " | RM " << setw(6) << right << fixed << setprecision(2) << item.product.getPrice()
+                         << " | RM " << setw(8) << right << fixed << setprecision(2) << itemTotal << " |" << endl;
                 }
                 
                 cout << " +------+-------------------------+---------+-----------+-------------+" << endl;
@@ -255,7 +256,7 @@ void Menu::showMenu(vector<Product>& products, vector<CartItem>& cart) {
                 cout << " +------+-------------------------+---------+" << endl;
                 
                 for (auto &item : cart) {
-                    cout << " | " << setw(4) << item.product.getId() 
+                    cout << " | " << setw(4) << right << item.product.getId() 
                          << " | " << setw(23) << left << item.product.getName() 
                          << " | " << setw(7) << right << item.quantity << " |" << endl;
                 }
@@ -349,7 +350,7 @@ void Menu::showMenu(vector<Product>& products, vector<CartItem>& cart) {
                 cout << " +------+-------------------------+---------+" << endl;
                 
                 for (auto &item : cart) {
-                    cout << " | " << setw(4) << item.product.getId() 
+                    cout << " | " << setw(4) << right << item.product.getId() 
                          << " | " << setw(23) << left << item.product.getName() 
                          << " | " << setw(7) << right << item.quantity << " |" << endl;
                 }
@@ -418,6 +419,18 @@ void Menu::showMenu(vector<Product>& products, vector<CartItem>& cart) {
         else if (choice == 7) {
             Auth::logout();
             return; // Exit to main, which will show auth menu again
+        }
+
+        else if (choice == 8) {
+            Auth::logout();
+            cout << R"(
+         +----------------------------------------+
+         |             GOODBYE!                   |
+         |     Thank you for using our system!    |
+         |            See you again!              |
+         +----------------------------------------+
+)" << endl;
+            exit(0); // Exit the entire program
         }
 
     } while (choice != 8);
