@@ -1,4 +1,4 @@
-login before use 
+login / register before use 
 
 username ryan
 password ryan123 
