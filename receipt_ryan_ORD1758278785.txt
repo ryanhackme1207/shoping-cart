@@ -4,8 +4,8 @@
 ===============================================================
 
 DIGITAL RECEIPT
-Order ID: ORD1758186710
-Date: Thu Sep 18 17:11:50 2025
+Order ID: ORD1758278785
+Date: Fri Sep 19 18:46:25 2025
 Platform: Shopee Online Shopping
 Store: Shopee Mall Official Store
 
@@ -13,7 +13,7 @@ CUSTOMER INFORMATION:
 Name: Lai Ting Hong
 Email: ryan@gmail.com
 Username: ryan
-Delivery Address: multimedia university
+Delivery Address: s
 Payment Method: Shopee Pay
 Shipping Method: Standard Delivery (3-5 working days)
 
@@ -21,16 +21,17 @@ ITEMS PURCHASED:
 +------+-------------------------+---------+-----------+-------------+
 |  ID  |       PRODUCT NAME      |   QTY   |   PRICE   |    TOTAL    |
 +------+-------------------------+---------+-----------+-------------+
-|    2 | Mouse                   |       5 | RM  50.00 | RM   250.00 |
-|    3 | Keyboard                |       3 | RM 150.00 | RM   450.00 |
+|    1 | Laptop                  |       5 | RM 2500.00 | RM 12500.00 |
+|    2 | Mouse                   |      10 | RM  50.00 | RM   500.00 |
+|    5 | Headphones              |       6 | RM 200.00 | RM  1200.00 |
 +------+-------------------------+---------+-----------+-------------+
 
 PAYMENT BREAKDOWN:
-Subtotal:        RM 700.00
+Subtotal:        RM 14200.00
 Shipping Fee:    RM 0.00 (FREE)
 Discount:        RM 0.00
 -----------------------------------------------
-GRAND TOTAL:     RM 700.00
+GRAND TOTAL:     RM 14200.00
 
 SHOPEE INFORMATION:
 Website: www.shopee.com.my
@@ -46,4 +47,4 @@ IMPORTANT NOTES:
 
 Thank you for shopping with Shopee!
 Follow us: @ShopeeMY | Download Shopee App for exclusive deals
-For inquiries, contact us with Order ID: ORD1758186710
+For inquiries, contact us with Order ID: ORD1758278785
